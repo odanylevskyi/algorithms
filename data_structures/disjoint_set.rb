@@ -44,21 +44,21 @@ class DisjointSet
   end
 end
 
-disjoingSet = DisjointSet.new
-disjoingSet.make(1)
-disjoingSet.make(2)
-disjoingSet.make(3)
-disjoingSet.make(4)
-disjoingSet.make(5)
-disjoingSet.union(1,2)
-disjoingSet.union(3,4)
-puts "Set: #{disjoingSet.find(2)}"
-puts "Set: #{disjoingSet.find(4)}"
-disjoingSet.union(2,5)
-disjoingSet.union(1,3)
-puts "Set: #{disjoingSet.find(3)}"
-puts "Set: #{disjoingSet.find(5)}"
-puts disjoingSet.parents.to_s
-puts disjoingSet.ranks.to_s
-puts disjoingSet.adjacent.to_s
+# disjoingSet = DisjointSet.new
+# disjoingSet.make(1)
+# disjoingSet.make(2)
+# disjoingSet.make(3)
+# disjoingSet.make(4)
+# disjoingSet.make(5)
+# disjoingSet.union(1,2)
+# disjoingSet.union(3,4)
+# puts "Set: #{disjoingSet.find(2)}"
+# puts "Set: #{disjoingSet.find(4)}"
+# disjoingSet.union(2,5)
+# disjoingSet.union(1,3)
+# puts "Set: #{disjoingSet.find(3)}"
+# puts "Set: #{disjoingSet.find(5)}"
+# puts disjoingSet.parents.to_s
+# puts disjoingSet.ranks.to_s
+# puts disjoingSet.adjacent.to_s
 

@@ -22,6 +22,10 @@ class AVLTree
       end
     end
     node.height = get_height(node)
+    rebalance(data, node)
+  end
+
+  def rebalance(data, node)
     if balance_factor(node) > 1
       if data < node.left.data
         left_rotation(node)
@@ -131,9 +135,73 @@ class AVLTree
     end
   end
 
-  def remove
+  def min_value(node)
+    current = node
+    while !current.left.nil?
+      current = node.left
+    end
+    return current
   end
 
+  def remove_leaf(node)
+    if node.parent.left == node
+      node.parent.left = nil
+    else
+      node.parent.right = nil
+    end
+  end
+
+  def remove_node(data, node)
+    if node.nil?
+      return node
+    end
+
+    if data < node.data
+      node.left = remove_node(data, node.left)
+    elsif data > node.data
+      node.right = remove_node(data, node.right)
+    else
+      if node.left.nil? || node.right.nil?
+        tmp = node.left.nil? ? node.right : node.left
+        if tmp.nil?
+          remove_leaf(node)
+        else
+          return tmp
+        end
+        node = nil
+      else
+        tmp = min_value(node.right)
+        node.data = tmp.data
+        node.right = remove_node(tmp.data, node.right)
+      end
+    end
+
+    if node.nil?
+      return node
+    end
+
+    node.height = get_height(node)
+    balance = balance_factor(node)
+
+    if (balance > 1 && balance_factor(node.left) >= 0)
+      return left_rotation(node);
+    end
+    if (balance > 1 && balance_factor(node.left) < 0)
+      return left_right_rotation(node)
+    end
+    if (balance < -1 &&  balance_factor(node.right) <= 0)
+      return right_rotation(node)
+    end
+    if (balance < -1 && balance_factor(node.right) > 0)
+      return right_left_rotation(node)
+    end
+
+    return node
+  end
+
+  def remove(data)
+    remove_node(data, root)
+  end
 
   def level_order_traversal
     levels = []
@@ -159,9 +227,12 @@ class AVLTree
 end
 
 
-avlTree = AVLTree.new(5)
-avlTree.insert(15)
-avlTree.insert(10)
-avlTree.insert(20)
+avlTree = AVLTree.new(44)
 avlTree.insert(17)
+avlTree.insert(62)
+avlTree.insert(32)
+avlTree.insert(50)
+avlTree.insert(78)
+avlTree.insert(88)
+avlTree.remove(17)
 avlTree.level_order_traversal

@@ -1,4 +1,4 @@
-class LinkedLink
+class LinkedList
   attr_accessor :root
 
   Node = Struct.new(:data, :next)
@@ -62,7 +62,7 @@ class LinkedLink
 end
 
 
-list = LinkedLink.new
+list = LinkedList.new
 list.insert(1)
 list.insert(2)
 list.insert(3)

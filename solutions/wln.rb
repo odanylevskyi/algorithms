@@ -1,7 +1,7 @@
 require 'date'
 require 'time'
 
-content = File.open('tests/wln_2.wln').read
+content = File.open('tests/wln_3.wln').read
 content.gsub!(/\r\n?/, "\n")
 new_content = ''
 i = 0
